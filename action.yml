@@ -1,0 +1,20 @@
+name: TimeStamp
+description: Creates timestamp string
+author: WK
+inputs:
+  format:
+    required: true
+    description: time format
+    default: YYYYMMDD
+outputs:
+  timestamp:
+    description: timestamp string
+    value: ${{steps.timestamp.outputs.timestamp}}
+runs:
+  using: composite
+  steps:
+    - shell: pwsh
+      id: timestamp
+      run: |
+        $timestamp = $(Get-Date).ToString("${{inputs.format}}")
+        Write-Output "::set-output name=timestamp::$timestamp"
