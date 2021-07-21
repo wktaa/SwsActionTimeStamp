@@ -18,3 +18,5 @@ runs:
       run: |
         $timestamp = $(Get-Date).ToString("${{inputs.format}}")
         Write-Output "::set-output name=timestamp::$timestamp"
+        Write-Output $timestamp
+
